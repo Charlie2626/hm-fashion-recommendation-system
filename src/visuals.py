@@ -30,8 +30,8 @@ def show_score_chart(df):
 
 
 @st.cache_data
-def build_image_index(image_root):
-    image_root = Path(image_root)
+def build_image_index():
+    image_root = Path(__file__).resolve().parent.parent / "images"
 
     if not image_root.exists():
         return {}
@@ -51,15 +51,12 @@ def build_image_index(image_root):
     return image_index
 
 
-def get_product_image_path(
-    article_id,
-    image_root="/Users/charliebeverly/Desktop/H&M-Project/h-and-m-personalized-fashion-recommendations/images"
-):
-    article_id = str(article_id).strip()
+def get_product_image_path(article_id):
+    article_id = str(article_id).split(".")[0].strip()
     padded_id = article_id.zfill(10)
     stripped_id = article_id.lstrip("0")
 
-    image_index = build_image_index(image_root)
+    image_index = build_image_index()
 
     if padded_id in image_index:
         return image_index[padded_id]
