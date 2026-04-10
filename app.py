@@ -125,7 +125,7 @@ def render_recommendation_card(row, image_root):
     score = row.get("score", None)
     score_pct = row.get("score_pct", None)
 
-    image_path = get_product_image_path(article_id, image_root=image_root)
+    image_path = get_product_image_path(article_id)
 
     st.markdown('<div class="rec-card">', unsafe_allow_html=True)
 
@@ -327,7 +327,6 @@ with left_col:
                 with cols[idx]:
                     render_recommendation_card(
                         row=row,
-                        image_root="h-and-m-personalized-fashion-recommendations/images"
                     )
 
 with right_col:
