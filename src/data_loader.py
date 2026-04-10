@@ -1,22 +1,13 @@
-import pandas as pd
-import streamlit as st
 from pathlib import Path
+import pandas as pd
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
 
-@st.cache_data
 def load_data():
-    project_root = Path("/Users/charliebeverly/Desktop/H&M-Project")
+    recommendations_df = pd.read_csv(DATA_DIR / "recommendations_demo.csv")
+    articles_df = pd.read_csv(DATA_DIR / "articles_demo.csv")
 
-    recommendations_path = "/Users/charliebeverly/Desktop/H&M-Project/phase5_final_recommendations.csv"
-    detailed_path ="/Users/charliebeverly/Desktop/H&M-Project/phase5_final_recommendations_detailed.csv"
-    articles_path ="/Users/charliebeverly/Desktop/H&M-Project/h-and-m-personalized-fashion-recommendations/articles.csv"
-
-    recommendations_df = pd.read_csv(recommendations_path)
-    detailed_df = pd.read_csv(detailed_path)
-    articles_df = pd.read_csv(articles_path)
-
-    recommendations_df.columns = recommendations_df.columns.str.strip()
-    detailed_df.columns = detailed_df.columns.str.strip()
-    articles_df.columns = articles_df.columns.str.strip()
+    detailed_df = recommendations_df.copy()
 
     return recommendations_df, detailed_df, articles_df
