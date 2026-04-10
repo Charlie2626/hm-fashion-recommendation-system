@@ -115,7 +115,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-def render_recommendation_card(row, image_root):
+def render_recommendation_card(row):
     article_id = row.get("article_id", "Unknown")
     product_name = row.get("product_name", f"Product {article_id}")
     garment_group = row.get("garment_group_name", "N/A")
@@ -326,7 +326,7 @@ with left_col:
             for idx, (_, row) in enumerate(pair.iterrows()):
                 with cols[idx]:
                     render_recommendation_card(
-                        row=row,
+                        row=row
                     )
 
 with right_col:
